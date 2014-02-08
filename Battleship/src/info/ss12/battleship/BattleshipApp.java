@@ -2,6 +2,7 @@ package info.ss12.battleship;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -14,7 +15,6 @@ public class BattleshipApp extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -25,5 +25,8 @@ public class BattleshipApp extends Activity {
     public void clicked(View view) {
     	TextView tv = (TextView) findViewById(R.id.textView1);
     	tv.setText("hello");
+    	Intent myIntent = new Intent(BattleshipApp.this, SelectionActivity.class);
+    	//myIntent.putExtra("key", value); //Optional parameters
+    	BattleshipApp.this.startActivity(myIntent);
     }
 }

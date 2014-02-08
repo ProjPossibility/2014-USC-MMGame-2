@@ -12,16 +12,20 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_title" />
-
+        android:layout_centerHorizontal="true"
+        android:text="@string/main_title"
+        android:textSize="60sp"
+        android:textAlignment="center"
+       	 />
+    
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="29dp"
-        android:text="Button"
-        android:onClick="clicked" />
-
+        android:layout_centerHorizontal="true"
+        android:onClick="clicked"
+        android:text="@string/new_game"
+        android:textSize="80sp" />
 </RelativeLayout>
