@@ -1,1 +1,4 @@
-hello world
+<?php
+  //php code goes in here
+
+?>
