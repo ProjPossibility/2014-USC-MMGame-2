@@ -1,3 +1,5 @@
+
+
 package info.ss12.battleship;
 
 import android.app.Activity;
@@ -38,7 +40,6 @@ public class ScrollPage extends Activity {
 		setContentView(R.layout.activity_scroll_page);
 
 		gestureDetector = new GestureDetector(getBaseContext(), new GestureListener());
-
 
 		mViewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
 		mViewFlipper.setDisplayedChild(0);
@@ -106,7 +107,7 @@ public class ScrollPage extends Activity {
 
 		boolean touchStarted = false;
 		int x, y;
-		private class MyGestureDetector extends SimpleOnGestureListener {
+		public class MyGestureDetector extends SimpleOnGestureListener {
 
 			private static final int SWIPE_MIN_DISTANCE = 120;
 			private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -200,7 +201,7 @@ public class ScrollPage extends Activity {
 
 
 
-		private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+		public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
 			@Override
 			public boolean onDown(MotionEvent e) {
