@@ -32,10 +32,12 @@ public class MoveBoard extends Activity {
 	private Animation mInFromLeft;
 	private Animation mOutToRight;
 	//private ViewFlipper mViewFlipper;
-	private int count = 0;
+	private int counter = 0;
+	private static int count = 0;
 	long pattern[] = {0,10,50,10,50};
 
 	GestureDetector gestureDetector;
+	GestureDetector flickers;
 	BubbleSurfaceView bubble ;
  
 	@Override
@@ -45,9 +47,10 @@ public class MoveBoard extends Activity {
 		setContentView(bubble);
 
 		gestureDetector = new GestureDetector(getBaseContext(), new GestureListener());
-		
 		//mViewFlipper.setDisplayedChild(0);
 		initAnimations();
+		counter++;
+		System.out.println("Counter:" + counter);
 	}
 
 	@Override
@@ -159,6 +162,9 @@ public class MoveBoard extends Activity {
 				else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
 					vib.cancel();
 				}
+				if (gestureDetector.onTouchEvent(event)) {
+				} else {
+				}
 				return true;
 			}
 		});
@@ -172,11 +178,11 @@ public class MoveBoard extends Activity {
 
 		@Override
 		public boolean onDown(MotionEvent e) {
-			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+			/*Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			//if(e.getX() == 100 && e.getY() == 100){
 			System.out.println("Hi");
 			//v.vibrate(500);
-			/*}
+			}
 				if(e.getX() == 100 && e.getY() == 200){
 					v.vibrate(400);
 				}
@@ -193,7 +199,7 @@ public class MoveBoard extends Activity {
 			return true;
 		}
 
-		@Override
+		/*@Override
 		public void onShowPress(MotionEvent e){
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			boolean allFalse = true;
@@ -208,8 +214,10 @@ public class MoveBoard extends Activity {
 			if(!allFalse){
 				v.vibrate(0);
 			}
-		}
+		}*/
 
+		
+		
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
 				count++;
@@ -219,7 +227,7 @@ public class MoveBoard extends Activity {
 							&& Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
 						// determine grid position that e1 is in
 						// $$$$$$$$$$$$$$$$$$$ DO PHP CALL TO SEND COORDINATES X,Y $$$$$$$$$$$$$$$$$$$
-						Intent myIntent = new Intent(MoveBoard.this, MoveBoard.class);
+						Intent myIntent = new Intent(MoveBoard.this, BattleshipApp.class);
 				    	//myIntent.putExtra("key", value); //Optional parameters  SEND INFO HERE
 						MoveBoard.this.startActivity(myIntent);
 					}
