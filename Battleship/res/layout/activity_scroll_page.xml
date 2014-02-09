@@ -16,8 +16,8 @@
         android:layout_centerVertical="true"
         android:text="@string/title_A"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="350sp" 
-        android:visibility="gone"/>
+        android:textSize="350sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textView2"
@@ -69,9 +69,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:visibility="gone" />
 
-    
-    
-    
     <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="fill_parent"
@@ -84,64 +81,65 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:text="@string/title_A"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="350sp" />
 
-    <TextView
-        android:id="@+id/textViewB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/title_B"
-        android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:textSize="350sp"/>
+        <TextView
+            android:id="@+id/textViewB"
+            android:layout_width="302dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/title_B"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="350sp" />
 
-    <TextView
-        android:id="@+id/textViewC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/title_C"
-        android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:textSize="350sp"/>
+        <TextView
+            android:id="@+id/textViewC"
+            android:layout_width="302dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/title_C"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="350sp" />
 
-    <TextView
-        android:id="@+id/textViewD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/title_D"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="350sp"/>
+        <TextView
+            android:id="@+id/textViewD"
+            android:layout_width="302dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/title_D"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="350sp" />
 
-    <TextView
-        android:id="@+id/textViewE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/title_E"
-        android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:textSize="350sp"/>
+        <TextView
+            android:id="@+id/textViewE"
+            android:layout_width="302dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/title_E"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="350sp" />
 
-    <TextView
-        android:id="@+id/textViewF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/title_F"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="350sp"/>
+        <TextView
+            android:id="@+id/textViewF"
+            android:layout_width="302dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/title_F"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="350sp" />
     </ViewFlipper>
-    
-    
-    
-    
-    
-    
+
 </RelativeLayout>
