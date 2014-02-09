@@ -23,7 +23,7 @@ public class BattleshipApp extends Activity {
     }
     
     public void clicked(View view) {
-    	Intent myIntent = new Intent(BattleshipApp.this, Grid.class);
+    	Intent myIntent = new Intent(BattleshipApp.this, ScrollPage.class);
     	//myIntent.putExtra("key", value); //Optional parameters 
     	BattleshipApp.this.startActivity(myIntent);
     }
