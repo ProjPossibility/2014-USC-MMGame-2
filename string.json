@@ -1,0 +1,7 @@
+[
+{"hitboxes":[{"team":0,"ship_ID":0,"x":0,"y":0},{"team":0,"ship_ID":0,"x":0,"y":1},{"team":0,"ship_ID":0,"x":0,"y":2}],"ship_ID":0,"sunk":false,"team":0,"num_hitbox":3},
+{"hitboxes":[{"team":0,"ship_ID":1,"x":3,"y":3},{"team":0,"ship_ID":1,"x":3,"y":2}],"ship_ID":1,"sunk":false,"team":0,"num_hitbox":2},
+{"hitboxes":[{"team":0,"ship_ID":2,"x":2,"y":1},{"team":0,"ship_ID":2,"x":2,"y":2}],"ship_ID":2,"sunk":false,"team":0,"num_hitbox":2},
+{"hitboxes":[{"team":0,"ship_ID":3,"x":5,"y":5}],"ship_ID":3,"sunk":false,"team":0,"num_hitbox":1},
+{"hitboxes":[{"team":0,"ship_ID":4,"x":1,"y":4}],"ship_ID":4,"sunk":false,"team":0,"num_hitbox":1}
+]
