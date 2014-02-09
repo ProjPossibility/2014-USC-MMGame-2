@@ -33,7 +33,6 @@ public class ScrollPage extends Activity {
 
 	GestureDetector gestureDetector;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

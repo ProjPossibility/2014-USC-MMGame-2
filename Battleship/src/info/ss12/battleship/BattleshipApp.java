@@ -1,5 +1,7 @@
 package info.ss12.battleship;
 
+import info.ss12.battleship.ScrollPage.MyGestureDetector;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,16 +19,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.View.OnTouchListener;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 import android.speech.tts.TextToSpeech;
+import android.view.SurfaceView;
 
 import com.google.gson.Gson;
 
@@ -38,6 +51,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 	Bundle extras;
 	TextToSpeech ttobj;
 	private static final int MY_DATA_CHECK_CODE = 1234;
+	//private ViewFlipper mViewFlipper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +66,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		}
 		ttobj = new TextToSpeech(this, this);
 
+		initAnimations();
 		Intent checkIntent = new Intent();
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
@@ -69,9 +84,8 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		System.out.println("Counter is now: " + counter);
 		//ttobj.speak("New Game Selected", TextToSpeech.QUEUE_FLUSH, null);
 		Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
-		myIntent.putExtra("cool", counter); //Optional parameters
-		new SendData().execute(); // done
-
+		//myIntent.putExtra("cool", counter); //Optional parameters
+		//new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
 	}
 
@@ -224,10 +238,12 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		}
 	}
 
+	// THIS IS CALLED WHEN THE NEW GAME SCREEN SHOWS
 	@Override
 	public void onInit(int arg0) {
-		if(extras == null){
-			//ttobj.speak("Welcome to Battleship", TextToSpeech.QUEUE_FLUSH, null);
+		if(extras == null && counter == 0){
+			ttobj.speak("Welcome to Battleship!  Swipe across the top of the screen to hear instructions.  TTTap the center of the screen to start a new game.", TextToSpeech.QUEUE_FLUSH, null);
+			counter++;
 		}
 	}
 
@@ -254,7 +270,6 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 	@Override
     public void onDestroy()
     {
-        // Don't forget to shutdown!
         if (ttobj != null)
         {
         	ttobj.stop();
@@ -262,4 +277,70 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
         }
         super.onDestroy();
     }
+	
+	private void initAnimations() {
+
+		final GestureDetector gestureDetector;
+		gestureDetector = new GestureDetector(new MyGestureDetector());
+
+		SurfaceView x = new SurfaceView(getBaseContext());
+		((View) x).setOnTouchListener(new OnTouchListener() {
+
+			public boolean onTouch(View v, MotionEvent event) {
+				if (gestureDetector.onTouchEvent(event)) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		});
+	}
+
+	boolean touchStarted = false;
+	int x, y;
+	public class MyGestureDetector extends SimpleOnGestureListener {
+
+		private static final int SWIPE_MIN_DISTANCE = 120;
+		private static final int SWIPE_MAX_OFF_PATH = 250;
+		private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+		
+		public boolean onTouch(View v, MotionEvent event) {
+		    int action = event.getAction();
+		    if (action == MotionEvent.ACTION_DOWN) {
+		        touchStarted = true;
+		    }
+		    else if (action == MotionEvent.ACTION_MOVE) {
+		        // movement: cancel the touch press
+		        touchStarted = false;
+
+		        x = (int) event.getX();
+		        y = (int) event.getY();
+
+		    }
+		    else if (action == MotionEvent.ACTION_UP) {
+		        if (touchStarted) {
+		            // touch press complete, show toast
+		            Toast.makeText(v.getContext(), "Coords: " + x + ", " + y, 1000).show();
+		        }
+		    }
+
+		    return true;
+		}
+		
+
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+				ttobj.speak("Swiped.", TextToSpeech.QUEUE_FLUSH, null);
+
+			} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+				ttobj.speak("Swiped.", TextToSpeech.QUEUE_FLUSH, null);
+
+			}
+			
+			return super.onFling(e1, e2, velocityX, velocityY);
+		}
+	}
 }
