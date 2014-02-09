@@ -1,21 +1,10 @@
 package info.ss12.battleship;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.StringTokenizer;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -26,9 +15,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.Gson;
-
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 public class BattleshipApp extends Activity {
 
@@ -50,9 +47,9 @@ public class BattleshipApp extends Activity {
 	public void clicked(View view) {
 		TextView tv = (TextView) findViewById(R.id.textView1);
 		tv.setText("hello");
-		Intent myIntent = new Intent(BattleshipApp.this, SelectionActivity.class);
+		Intent myIntent = new Intent(BattleshipApp.this, ScrollPage.class);
 		//myIntent.putExtra("key", value); //Optional parameters
-		new SendData().execute(); // done
+		//new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
 	}
 
@@ -111,7 +108,7 @@ public class BattleshipApp extends Activity {
 					Log.i("RESPONSE", sb.toString());
 					if(sb.toString().contains("data accepted")){
 						//do something with the string
-						Intent intent = new Intent(BattleshipApp.this, SelectionActivity.class);
+						Intent intent = new Intent(BattleshipApp.this, ScrollPage.class);
 						startActivity(intent); //switch activities
 					}else{
 						Toast.makeText(getApplicationContext(), 

@@ -6,8 +6,20 @@
     <string name="main_title">Battleship</string>
     <string name="new_game">New Game</string>
     <string name="title_activity_selection">SelectionActivity</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_A">A</string>
+    <string name="title_B">B</string>
+    <string name="title_C">C</string>
+    <string name="title_D">D</string>
+    <string name="title_E">E</string>
+    <string name="title_F">F</string>
+    <string name="title_1">1</string>
+    <string name="title_2">2</string>
+    <string name="title_3">3</string>
+    <string name="title_4">4</string>
+    <string name="title_5">5</string>
+    <string name="title_6">6</string>
+    <string name="title_activity_scroll_page">ScrollPage</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_scroll_page2">ScrollPage2</string>
 
 </resources>
