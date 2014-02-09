@@ -87,12 +87,11 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		p1 = false;
 		System.out.println("Counter is now: " + counter);
 		//ttobj.speak("New Game Selected", TextToSpeech.QUEUE_FLUSH, null);
-<<<<<<< HEAD
+
 		Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
 		//myIntent.putExtra("cool", counter); //Optional parameters
 		//new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
-=======
 		//Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
 		//myIntent.putExtra("cool", counter); //Optional parameters
 		new SendData().execute(); // done
@@ -100,7 +99,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		new SendData().execute(); // done
 
 		//BattleshipApp.this.startActivity(myIntent);
->>>>>>> a204462d8053fd543bc3ae362634e684b5f7f487
+
 	}
 
 	private class SendData extends AsyncTask<String, Integer, Void> {
@@ -347,8 +346,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		final GestureDetector gestureDetector;
 		gestureDetector = new GestureDetector(new MyGestureDetector());
 
-		SurfaceView x = new SurfaceView(getBaseContext());
-		((View) x).setOnTouchListener(new OnTouchListener() {
+		findViewById(R.id.textView1).setOnTouchListener(new OnTouchListener() {
 
 			public boolean onTouch(View v, MotionEvent event) {
 				if (gestureDetector.onTouchEvent(event)) {
@@ -391,19 +389,15 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		    return true;
 		}
 		
-
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
 			if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
 					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-				ttobj.speak("Swiped.", TextToSpeech.QUEUE_FLUSH, null);
-
+				ttobj.speak("Instructions.  In this 2 player game there is a 6 by 6 grid of targets. Light vibrations indicate available targets, heavy vibrations indicate successful hits, and no vibration indicates a miss or a point that is not a target.  Swipe up from a target to shoot at it. There are 5 ships for each player with sizes of 3, 2, 2, 1, and 1. Good luck!", TextToSpeech.QUEUE_FLUSH, null);
 			} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
 					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-				ttobj.speak("Swiped.", TextToSpeech.QUEUE_FLUSH, null);
-
+				ttobj.speak("Instructions.  In this 2 player game there is a 6 by 6 grid of targets. Light vibrations indicate available targets, heavy vibrations indicate successful hits, and no vibration indicates a miss or a point that is not a target.  Swipe up from a target to shoot at it. There are 5 ships for each player with sizes of 3, 2, 2, 1, and 1. Good luck!", TextToSpeech.QUEUE_FLUSH, null);
 			}
-			
 			return super.onFling(e1, e2, velocityX, velocityY);
 		}
 	}
