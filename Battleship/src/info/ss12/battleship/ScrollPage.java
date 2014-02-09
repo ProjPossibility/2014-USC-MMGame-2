@@ -1,8 +1,10 @@
 package info.ss12.battleship;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -14,6 +16,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class ScrollPage extends Activity {
@@ -101,16 +104,59 @@ public class ScrollPage extends Activity {
 			});
 		}
 
+		boolean touchStarted = false;
+		int x, y;
 		private class MyGestureDetector extends SimpleOnGestureListener {
 
 			private static final int SWIPE_MIN_DISTANCE = 120;
 			private static final int SWIPE_MAX_OFF_PATH = 250;
 			private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 			
+			public boolean onTouch(View v, MotionEvent event) {
+			    int action = event.getAction();
+			    if (action == MotionEvent.ACTION_DOWN) {
+			        touchStarted = true;
+			    }
+			    else if (action == MotionEvent.ACTION_MOVE) {
+			        // movement: cancel the touch press
+			        touchStarted = false;
+
+			        x = (int) event.getX();
+			        y = (int) event.getY();
+
+			    }
+			    else if (action == MotionEvent.ACTION_UP) {
+			        if (touchStarted) {
+			            // touch press complete, show toast
+			            Toast.makeText(v.getContext(), "Coords: " + x + ", " + y, 1000).show();
+			        }
+			    }
+
+			    return true;
+			}
+			
 			
 
 			public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 					float velocityY) {
+				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				if(e1.getX() == 100 && e1.getY() == 100){
+				System.out.println("Hi");
+					v.vibrate(50);
+				}
+
+				if(e1.getX() >= 100 && e1.getX() == 100 && e1.getY() >= 100 && e1.getY() == 200){
+					v.vibrate(10);
+				}
+				if(e1.getX() == 100 && e1.getY() == 300){
+					v.vibrate(20);
+				}
+				if(e1.getX() == 100 && e1.getY() == 400){
+					v.vibrate(30);
+				}
+				if(e1.getX() == 100 && e1.getY() == 500){
+					v.vibrate(40);
+				}
 				count++;
 				System.out.println(" in onFling() :: ");
 				if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
@@ -158,6 +204,21 @@ public class ScrollPage extends Activity {
 
 			@Override
 			public boolean onDown(MotionEvent e) {
+				//Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				//if(e.getX() == 100 && e.getY() == 100){
+				/*}
+				if(e.getX() == 100 && e.getY() == 200){
+					v.vibrate(400);
+				}
+				if(e.getX() == 100 && e.getY() == 300){
+					v.vibrate(300);
+				}
+				if(e.getX() == 100 && e.getY() == 400){
+					v.vibrate(200);
+				}
+				if(e.getX() == 100 && e.getY() == 500){
+					v.vibrate(100);
+				}*/
 				return true;
 			}
 			// event when double tap occurs
