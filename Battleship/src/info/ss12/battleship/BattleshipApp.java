@@ -45,11 +45,9 @@ public class BattleshipApp extends Activity {
 	}
 
 	public void clicked(View view) {
-		TextView tv = (TextView) findViewById(R.id.textView1);
-		tv.setText("hello");
-		Intent myIntent = new Intent(BattleshipApp.this, ScrollPage.class);
+		Intent myIntent = new Intent(BattleshipApp.this, Grid.class);
 		//myIntent.putExtra("key", value); //Optional parameters
-		new SendData().execute(); // done
+		//new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
 	}
 

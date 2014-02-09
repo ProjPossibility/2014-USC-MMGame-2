@@ -33,31 +33,24 @@ public class Grid extends Activity {
 	private Animation mOutToLeft;
 	private Animation mInFromLeft;
 	private Animation mOutToRight;
-	private ViewFlipper mViewFlipper;
+	//private ViewFlipper mViewFlipper;
 	private int count = 0;
 
 	GestureDetector gestureDetector;
-
-
+	BubbleSurfaceView bubble ;
+ 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_scroll_page);
+		bubble = new BubbleSurfaceView(this);
+		setContentView(bubble);
 
 		gestureDetector = new GestureDetector(getBaseContext(), new GestureListener());
-
-
-		mViewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
-		mViewFlipper.setDisplayedChild(0);
+		
+		//mViewFlipper.setDisplayedChild(0);
 		initAnimations();
 
-		TextView tv = (TextView) findViewById(R.id.textView2);
-		tv.setOnLongClickListener(new View.OnLongClickListener(){
-			@Override
-			public boolean onLongClick(View v) {
-				return true;
-			}
-		});}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,7 +60,7 @@ public class Grid extends Activity {
 	}
 
 	private void initAnimations() {
-		mInFromRight = new TranslateAnimation(Animation.RELATIVE_TO_PARENT,
+	/*	mInFromRight = new TranslateAnimation(Animation.RELATIVE_TO_PARENT,
 				+1.0f, Animation.RELATIVE_TO_PARENT, 0.0f,
 				Animation.RELATIVE_TO_PARENT, 0.0f,
 				Animation.RELATIVE_TO_PARENT, 0.0f);
@@ -94,12 +87,12 @@ public class Grid extends Activity {
 				Animation.RELATIVE_TO_PARENT, 0.0f,
 				Animation.RELATIVE_TO_PARENT, 0.0f);
 		mOutToLeft.setDuration(100);
-		mOutToLeft.setInterpolator(accelerateInterpolator);
+		mOutToLeft.setInterpolator(accelerateInterpolator);*/
 
 		final GestureDetector gestureDetector;
 		gestureDetector = new GestureDetector(new MyGestureDetector());
 
-		mViewFlipper.setOnTouchListener(new OnTouchListener() {
+		bubble.setOnTouchListener(new OnTouchListener() {
 
 			public boolean onTouch(View v, MotionEvent event) {
 				Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -273,8 +266,8 @@ public class Grid extends Activity {
 		public void onLongPress(MotionEvent e) {
 		}
 	}
-	
-	
+
+
 	public class BubbleSurfaceView extends SurfaceView  
 	implements SurfaceHolder.Callback {
 		private SurfaceHolder sh;
@@ -286,7 +279,7 @@ public class Grid extends Activity {
 			paint.setColor(Color.BLUE);
 			paint.setStyle(Style.FILL);
 		}
-		
+
 		// Draw circles for locations on grid
 		public void surfaceCreated(SurfaceHolder holder) {
 			Canvas canvas = sh.lockCanvas();
