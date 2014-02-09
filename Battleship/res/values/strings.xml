@@ -12,7 +12,14 @@
     <string name="title_D">D</string>
     <string name="title_E">E</string>
     <string name="title_F">F</string>
+    <string name="title_1">1</string>
+    <string name="title_2">2</string>
+    <string name="title_3">3</string>
+    <string name="title_4">4</string>
+    <string name="title_5">5</string>
+    <string name="title_6">6</string>
     <string name="title_activity_scroll_page">ScrollPage</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_scroll_page2">ScrollPage2</string>
 
 </resources>

@@ -30,6 +30,10 @@
             android:name="info.ss12.battleship.ScrollPage"
             android:label="@string/title_activity_scroll_page" >
         </activity>
+        <activity
+            android:name="info.ss12.battleship.ScrollPage2"
+            android:label="@string/title_activity_scroll_page2" >
+        </activity>
     </application>
 
 </manifest>

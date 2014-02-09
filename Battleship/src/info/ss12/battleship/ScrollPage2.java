@@ -16,7 +16,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-public class ScrollPage extends Activity {
+public class ScrollPage2 extends Activity {
 
 
 	private Animation mInFromRight;
@@ -32,7 +32,7 @@ public class ScrollPage extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_scroll_page);
+		setContentView(R.layout.activity_scroll_page2);
 
 		gestureDetector = new GestureDetector(getBaseContext(), new GestureListener());
 
@@ -117,9 +117,9 @@ public class ScrollPage extends Activity {
 				if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
 					if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
 							&& Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-						Intent myIntent = new Intent(ScrollPage.this, ScrollPage2.class);
+						Intent myIntent = new Intent(ScrollPage2.this, BattleshipApp.class);
 				    	//myIntent.putExtra("key", value); //Optional parameters  SEND INFO HERE
-						ScrollPage.this.startActivity(myIntent);
+						ScrollPage2.this.startActivity(myIntent);
 					}
 				}
 				if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
