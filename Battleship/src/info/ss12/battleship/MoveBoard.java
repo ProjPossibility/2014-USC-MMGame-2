@@ -1,5 +1,3 @@
-
-
 package info.ss12.battleship;
 
 import android.app.Activity;
@@ -26,7 +24,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-public class Grid extends Activity {
+public class MoveBoard extends Activity {
 
 
 	private Animation mInFromRight;
@@ -34,9 +32,12 @@ public class Grid extends Activity {
 	private Animation mInFromLeft;
 	private Animation mOutToRight;
 	//private ViewFlipper mViewFlipper;
-	private int count = 0;
+	private int counter = 0;
+	private static int count = 0;
+	long pattern[] = {0,10,50,10,50};
 
 	GestureDetector gestureDetector;
+	GestureDetector flickers;
 	BubbleSurfaceView bubble ;
  
 	@Override
@@ -46,16 +47,16 @@ public class Grid extends Activity {
 		setContentView(bubble);
 
 		gestureDetector = new GestureDetector(getBaseContext(), new GestureListener());
-		
 		//mViewFlipper.setDisplayedChild(0);
 		initAnimations();
-
+		counter++;
+		System.out.println("Counter:" + counter);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.grid, menu);
+		getMenuInflater().inflate(R.menu.move_board, menu);
 		return true;
 	}
 
@@ -98,17 +99,30 @@ public class Grid extends Activity {
 				Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 				if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN) {
 					boolean allFalse = true;
+					int xNum = 0;
+					int yNum = 0;
 					for(int i = 0; i < 6; i++){
 						for(int j = 0; j < 6; j++){
 							// Check if on a spot
 							if(event.getX()>i*180+85-50 && event.getX()<i*180+85+50 && event.getY()>j*180+605-50 && event.getY()<j*180+605+50){
 								allFalse = false;
+								xNum = i;
+								yNum = j;
 							}
 						}
 					}
 					if(!allFalse){
 						vib.cancel();
-						vib.vibrate(1000000000);
+						//$$$$$$$$$$$$$$$$$$$ DO PHP CALL TO FIND HIT STATUS OF X,Y $$$$$$$$$$$$$$$$$$$
+						if(true){	// untouched
+							vib.vibrate(pattern, 1);
+						}
+						else if(true){	// hit
+							vib.vibrate(1000000000);
+						}
+						else{	// miss
+							vib.cancel();
+						}
 					}
 					else{
 						vib.cancel();
@@ -116,16 +130,30 @@ public class Grid extends Activity {
 				}
 				if((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_MOVE){
 					boolean allFalse = true;
+					int xNum = 0;
+					int yNum = 0;
 					for(int i = 0; i < 6; i++){
 						for(int j = 0; j < 6; j++){
 							// Check if on a spot
 							if(event.getX()>i*180+85-50 && event.getX()<i*180+85+50 && event.getY()>j*180+605-50 && event.getY()<j*180+605+50){
 								allFalse = false;
+								xNum = i;
+								yNum = j;
 							}
 						}
 					}
 					if(!allFalse){
-						vib.vibrate(1000000000);
+						vib.cancel();
+						//$$$$$$$$$$$$$$$$$$$ DO PHP CALL TO FIND HIT STATUS OF X,Y $$$$$$$$$$$$$$$$$$$
+						if(true){	// untouched
+							vib.vibrate(pattern, 1);
+						}
+						else if(true){	// hit
+							vib.vibrate(1000000000);
+						}
+						else{	// miss
+							vib.cancel();
+						}
 					}
 					else{
 						vib.cancel();
@@ -133,6 +161,9 @@ public class Grid extends Activity {
 				}
 				else if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
 					vib.cancel();
+				}
+				if (gestureDetector.onTouchEvent(event)) {
+				} else {
 				}
 				return true;
 			}
@@ -147,11 +178,11 @@ public class Grid extends Activity {
 
 		@Override
 		public boolean onDown(MotionEvent e) {
-			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+			/*Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			//if(e.getX() == 100 && e.getY() == 100){
 			System.out.println("Hi");
 			//v.vibrate(500);
-			/*}
+			}
 				if(e.getX() == 100 && e.getY() == 200){
 					v.vibrate(400);
 				}
@@ -168,7 +199,7 @@ public class Grid extends Activity {
 			return true;
 		}
 
-		@Override
+		/*@Override
 		public void onShowPress(MotionEvent e){
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			boolean allFalse = true;
@@ -183,23 +214,25 @@ public class Grid extends Activity {
 			if(!allFalse){
 				v.vibrate(0);
 			}
-		}
+		}*/
 
+		
+		
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
-			/*Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-				v.vibrate(50);
 				count++;
 				System.out.println(" in onFling() :: ");
 				if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
 					if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
 							&& Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-						Intent myIntent = new Intent(ScrollPage.this, ScrollPage2.class);
+						// determine grid position that e1 is in
+						// $$$$$$$$$$$$$$$$$$$ DO PHP CALL TO SEND COORDINATES X,Y $$$$$$$$$$$$$$$$$$$
+						Intent myIntent = new Intent(MoveBoard.this, BattleshipApp.class);
 				    	//myIntent.putExtra("key", value); //Optional parameters  SEND INFO HERE
-						ScrollPage.this.startActivity(myIntent);
+						MoveBoard.this.startActivity(myIntent);
 					}
 				}
-				if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+				/*if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
 						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 					mViewFlipper.setInAnimation(mInFromRight);
 					mViewFlipper.setOutAnimation(mOutToLeft);
@@ -287,6 +320,16 @@ public class Grid extends Activity {
 			canvas.drawColor(Color.BLACK);
 			for(int i = 0; i < 6; i++){
 				for(int j = 0; j < 6; j++){
+					//$$$$$$$$$$$$$$$$$$$ DO PHP CALL TO FIND HIT STATUS OF X,Y $$$$$$$$$$$$$$$$$$$
+					if(true){	// untouched
+						paint.setColor(Color.BLUE);
+					}
+					else if(true){	// hit
+						paint.setColor(Color.RED);
+					}
+					else{	// miss
+						paint.setColor(Color.BLACK);
+					}
 					canvas.drawCircle(i*180+85, j*180+605, 50, paint);
 				}
 			}
