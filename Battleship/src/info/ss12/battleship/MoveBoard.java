@@ -226,8 +226,24 @@ public class MoveBoard extends Activity {
 					if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
 							&& Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
 						// determine grid position that e1 is in
-						// $$$$$$$$$$$$$$$$$$$ DO PHP CALL TO SEND COORDINATES X,Y $$$$$$$$$$$$$$$$$$$
-						Intent myIntent = new Intent(MoveBoard.this, BattleshipApp.class);
+						
+						int minX, maxX, minY, maxY;
+						for(int i = 0; i < 6; i++){
+							for(int j = 0; j < 6; j++){
+								minX = (i*180)+85 - 70;
+								maxX = (i*180)+85 + 70;
+								minY = (j*180)+605 - 70;
+								maxY = (j*180)+605 + 70;
+								if(e1.getX() >= minX && e1.getX() <= maxX && e1.getY() >= minY && e1.getY() <= maxY){
+									//shot = true
+									// $$$$$$$$$$$$$$$$$$$ DO PHP CALL TO SEND COORDINATES I,J $$$$$$$$$$$$$$$$$$$
+									System.out.println("X is: " + i + " Y is: " + j);
+									System.out.println("Shots fired!");
+								}
+							}
+						}
+						
+						Intent myIntent = new Intent(MoveBoard.this, MoveBoard.class);
 				    	//myIntent.putExtra("key", value); //Optional parameters  SEND INFO HERE
 						MoveBoard.this.startActivity(myIntent);
 					}
