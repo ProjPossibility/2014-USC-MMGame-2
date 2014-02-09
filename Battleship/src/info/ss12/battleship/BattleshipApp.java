@@ -47,7 +47,7 @@ public class BattleshipApp extends Activity {
 	public void clicked(View view) {
 		Intent myIntent = new Intent(BattleshipApp.this, Grid.class);
 		//myIntent.putExtra("key", value); //Optional parameters
-		//new SendData().execute(); // done
+		new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
 	}
 
@@ -74,6 +74,14 @@ public class BattleshipApp extends Activity {
 				RandomBoardGenerator((short)0);
 				String jsonstr = gson.toJson(Ships);
 				System.out.println(jsonstr);
+				int limit = 3;
+				int cmd = 0;
+				
+				String jcmd = gson.toJson(cmd);
+				String jlim = gson.toJson(limit);
+				jsonstr+=jlim;
+				jsonstr+=jcmd;
+				System.out.println();
 				json.put("limit",3); // best of 3
 				json.put("cmd",0); // 0 = start game
 				json.put("dataa",jsonstr);
@@ -167,7 +175,11 @@ public class BattleshipApp extends Activity {
 		boolean sunk;
 		Hitbox[] hitboxes;
 		int num_hitbox;
+		int limit; // hack
+		int cmd; // hack
 		Ship(short a, int b, int c){
+			limit = 3;
+			cmd = 0;
 			team = a;
 			num_hitbox = b;
 			hitboxes = new Hitbox[b]; // uninitialized array of hitboxes.
