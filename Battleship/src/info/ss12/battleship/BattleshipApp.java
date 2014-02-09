@@ -25,7 +25,7 @@ public class BattleshipApp extends Activity {
     public void clicked(View view) {
     	TextView tv = (TextView) findViewById(R.id.textView1);
     	tv.setText("hello");
-    	Intent myIntent = new Intent(BattleshipApp.this, SelectionActivity.class);
+    	Intent myIntent = new Intent(BattleshipApp.this, ScrollPage.class);
     	//myIntent.putExtra("key", value); //Optional parameters 
     	BattleshipApp.this.startActivity(myIntent);
     }

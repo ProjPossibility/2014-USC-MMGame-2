@@ -42,9 +42,9 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 
 	GestureDetector gest;
 	private static final String DEBUG_TAG = "Gestures";
-    private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+	private static final int SWIPE_MIN_DISTANCE = 120;
+	private static final int SWIPE_MAX_OFF_PATH = 250;
+	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -98,11 +98,11 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 			}
 			return false;
 		}
-		
+
 		@Override
 		public boolean onDoubleTap(MotionEvent event) {
 			Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-	    	//myIntent.putExtra("key", value); //Optional parameters 
+			//myIntent.putExtra("key", value); //Optional parameters 
 			SelectionActivity.this.startActivity(myIntent);
 			return true;
 		}
@@ -110,7 +110,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 		@Override
 		public boolean onDoubleTapEvent(MotionEvent event) {
 			Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-	    	//myIntent.putExtra("key", value); //Optional parameters 
+			//myIntent.putExtra("key", value); //Optional parameters 
 			SelectionActivity.this.startActivity(myIntent);
 			return true;
 		}
@@ -118,20 +118,20 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 		@Override
 		public boolean onDown(MotionEvent e) {
 			Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-	    	//myIntent.putExtra("key", value); //Optional parameters 
+			//myIntent.putExtra("key", value); //Optional parameters 
 			SelectionActivity.this.startActivity(myIntent);
 			return true;
 		}
-		
+
 		public void setOnClickListener(){
 			Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-	    	//myIntent.putExtra("key", value); //Optional parameters 
+			//myIntent.putExtra("key", value); //Optional parameters 
 			SelectionActivity.this.startActivity(myIntent);
 		}
-		
+
 		public void setOnTouchListener(GestureDetector g){
 			Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-	    	//myIntent.putExtra("key", value); //Optional parameters 
+			//myIntent.putExtra("key", value); //Optional parameters 
 			SelectionActivity.this.startActivity(myIntent);
 		}
 	}
@@ -150,7 +150,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
+			/*// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
 			Fragment fragment = new DetailFragment();
@@ -158,8 +158,30 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 			//args.putChar(key, value);
 			Button button = new Button(getBaseContext());
-			
+
 			fragment.setArguments(args);
+			return fragment;*/
+
+			Fragment fragment = null;
+			switch(position){
+			case 0:
+				fragment = new Fragment1();
+				break;
+			case 1:
+				fragment = new Fragment2();
+				break;
+			case 2:
+				fragment = new Fragment3();
+				break;
+			default:
+				break;
+			}
+
+			//set args if necessary (which it isn't?)
+			Bundle args = new Bundle();
+			fragment.setArguments(args);
+
+			//return fragment
 			return fragment;
 		}
 
@@ -227,7 +249,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public boolean onDown(MotionEvent event) { 
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -236,7 +258,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	public boolean onFling(MotionEvent event1, MotionEvent event2, 
 			float velocityX, float velocityY) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -244,7 +266,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public void onLongPress(MotionEvent event) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 	}
 
@@ -252,7 +274,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
 			float distanceY) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -260,14 +282,14 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public void onShowPress(MotionEvent event) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 	}
 
 	@Override
 	public boolean onSingleTapUp(MotionEvent event) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -275,7 +297,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public boolean onDoubleTap(MotionEvent event) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -283,7 +305,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public boolean onDoubleTapEvent(MotionEvent event) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -291,7 +313,7 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public boolean onSingleTapConfirmed(MotionEvent event) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 		return true;
 	}
@@ -299,52 +321,76 @@ public class SelectionActivity extends FragmentActivity implements GestureDetect
 	@Override
 	public void onClick(View v) {
 		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
-    	//myIntent.putExtra("key", value); //Optional parameters 
+		//myIntent.putExtra("key", value); //Optional parameters 
 		SelectionActivity.this.startActivity(myIntent);
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	 public class DetailFragment extends Fragment 
-	    implements OnClickListener 
+
+
+
+
+
+
+
+
+	public class DetailFragment extends Fragment 
+	implements OnClickListener 
 	{
-	    Button btn;
-	    DetailFragment(){
-	    	
-			Toast.makeText(SelectionActivity.this, this.btn.getText(), Toast.LENGTH_SHORT).show();
+		Button btn;
+		DetailFragment(){
 
-	    }	
-	    @Override
-	    public View onCreateView(LayoutInflater inflater,
-	    ViewGroup container, Bundle savedInstanceState)
-	    {
-	        View view = inflater.inflate(
-	            R.layout.activity_selection, container, false);
-	        
-	        btn = (Button) view.findViewById(R.id.button2);
-	        btn.setOnClickListener(this);       
+			//Toast.makeText(SelectionActivity.this, this.btn.getText(), Toast.LENGTH_SHORT).show();
 
-	        return view;
-	    }
+		}	
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+		{
+			View view = inflater.inflate(
+					R.layout.activity_selection, container, false);
 
-	    @Override
-	    public void onClick(View v) {
-	        Toast.makeText(this.getActivity(), 
-	            "Button is clicked!", Toast.LENGTH_LONG).show();
+			btn = (Button) view.findViewById(R.id.button2);
+			btn.setOnClickListener(this);       
 
-	    }
-	
+			return view;
+		}
+
+		@Override
+		public void onClick(View v) {
+			Toast.makeText(this.getActivity(), 
+					"Button is clicked!", Toast.LENGTH_LONG).show();
+
+		}
+
+	}
+
+	public class Fragment1 extends Fragment{
+		public void onCreate(View v) {
+			Toast.makeText(this.getActivity(), 
+					"Button is clicked!", Toast.LENGTH_LONG).show();
+
+		}
+	}
+
+	public class Fragment2 extends Fragment{
+		public void onCreate(View v) {
+			Toast.makeText(this.getActivity(), 
+					"Button is clicked!", Toast.LENGTH_LONG).show();
+
+		}
+	}
+	public class Fragment3 extends Fragment{
+		public void onCreate(View v) {
+			Toast.makeText(this.getActivity(), 
+					"Button is clicked!", Toast.LENGTH_LONG).show();
+
+		}
 	}
 	
-	
-	
-	
+	public void jumpToPage(View view){
+		Intent myIntent = new Intent(SelectionActivity.this, BattleshipApp.class);
+    	//myIntent.putExtra("key", value); //Optional parameters 
+		SelectionActivity.this.startActivity(myIntent);
+	}
 }
 

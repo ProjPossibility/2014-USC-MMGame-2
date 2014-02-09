@@ -12,5 +12,7 @@
     <string name="title_D">D</string>
     <string name="title_E">E</string>
     <string name="title_F">F</string>
+    <string name="title_activity_scroll_page">ScrollPage</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
