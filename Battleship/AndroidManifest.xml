@@ -41,6 +41,10 @@
             android:name="info.ss12.battleship.Grid"
             android:label="@string/title_activity_grid" >
         </activity>
+        <activity
+            android:name="info.ss12.battleship.MoveBoard"
+            android:label="@string/title_activity_move_board" >
+        </activity>
     </application>
 
 </manifest>

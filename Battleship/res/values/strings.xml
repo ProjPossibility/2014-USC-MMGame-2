@@ -22,5 +22,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_scroll_page2">ScrollPage2</string>
     <string name="title_activity_grid">Grid</string>
+    <string name="title_activity_move_board">MoveBoard</string>
 
 </resources>

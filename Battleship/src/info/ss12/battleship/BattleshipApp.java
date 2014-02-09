@@ -45,7 +45,7 @@ public class BattleshipApp extends Activity {
 	}
 
 	public void clicked(View view) {
-		Intent myIntent = new Intent(BattleshipApp.this, Grid.class);
+		Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
 		//myIntent.putExtra("key", value); //Optional parameters
 		//new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
