@@ -26,7 +26,7 @@ public class BattleshipApp extends Activity {
     	TextView tv = (TextView) findViewById(R.id.textView1);
     	tv.setText("hello");
     	Intent myIntent = new Intent(BattleshipApp.this, SelectionActivity.class);
-    	//myIntent.putExtra("key", value); //Optional parameters
+    	//myIntent.putExtra("key", value); //Optional parameters 
     	BattleshipApp.this.startActivity(myIntent);
     }
 }
