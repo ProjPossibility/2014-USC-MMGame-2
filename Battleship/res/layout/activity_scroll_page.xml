@@ -16,7 +16,7 @@
         android:layout_centerVertical="true"
         android:text="@string/title_A"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="400sp" 
+        android:textSize="350sp" 
         android:visibility="gone"/>
 
     <TextView
@@ -86,7 +86,7 @@
             android:layout_centerVertical="true"
             android:text="@string/title_A"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="400sp" />
+            android:textSize="350sp" />
 
     <TextView
         android:id="@+id/textViewB"
@@ -96,7 +96,7 @@
         android:layout_centerVertical="true"
         android:text="@string/title_B"
         android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:textSize="400sp"/>
+        android:textSize="350sp"/>
 
     <TextView
         android:id="@+id/textViewC"
@@ -106,7 +106,7 @@
         android:layout_centerVertical="true"
         android:text="@string/title_C"
         android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:textSize="400sp"/>
+        android:textSize="350sp"/>
 
     <TextView
         android:id="@+id/textViewD"
@@ -116,7 +116,7 @@
         android:layout_centerVertical="true"
         android:text="@string/title_D"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="400sp"/>
+        android:textSize="350sp"/>
 
     <TextView
         android:id="@+id/textViewE"
@@ -126,7 +126,7 @@
         android:layout_centerVertical="true"
         android:text="@string/title_E"
         android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:textSize="400sp"/>
+        android:textSize="350sp"/>
 
     <TextView
         android:id="@+id/textViewF"
@@ -136,7 +136,7 @@
         android:layout_centerVertical="true"
         android:text="@string/title_F"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="400sp"/>
+        android:textSize="350sp"/>
     </ViewFlipper>
     
     

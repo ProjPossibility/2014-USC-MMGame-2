@@ -45,7 +45,6 @@ public class ScrollPage extends Activity {
 		tv.setOnLongClickListener(new View.OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View v) {
-				System.out.println("lolz");
 				return true;
 			}
 		});}
@@ -167,13 +166,10 @@ public class ScrollPage extends Activity {
 				float x = e.getX();
 				float y = e.getY();
 
-				Log.d("Double Tap", "Tapped at: (" + x + "," + y + ")");
-
 				return true;
 			}
 			@Override
 			public void onLongPress(MotionEvent e) {
-				System.out.println("Longpress detected");
 			}
 		}
 	}
