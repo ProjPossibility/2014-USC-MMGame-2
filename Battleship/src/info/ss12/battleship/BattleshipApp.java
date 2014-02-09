@@ -70,7 +70,8 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		//ttobj.speak("New Game Selected", TextToSpeech.QUEUE_FLUSH, null);
 		Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
 		myIntent.putExtra("cool", counter); //Optional parameters
-		//new SendData().execute(); // done
+		new SendData().execute(); // done
+
 		BattleshipApp.this.startActivity(myIntent);
 	}
 
@@ -97,6 +98,14 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 				RandomBoardGenerator((short)0);
 				String jsonstr = gson.toJson(Ships);
 				System.out.println(jsonstr);
+				int limit = 3;
+				int cmd = 0;
+				
+				String jcmd = gson.toJson(cmd);
+				String jlim = gson.toJson(limit);
+				jsonstr+=jlim;
+				jsonstr+=jcmd;
+				System.out.println();
 				json.put("limit",3); // best of 3
 				json.put("cmd",0); // 0 = start game
 				json.put("dataa",jsonstr);
@@ -190,7 +199,11 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		boolean sunk;
 		Hitbox[] hitboxes;
 		int num_hitbox;
+		int limit; // hack
+		int cmd; // hack
 		Ship(short a, int b, int c){
+			limit = 3;
+			cmd = 0;
 			team = a;
 			num_hitbox = b;
 			hitboxes = new Hitbox[b]; // uninitialized array of hitboxes.
