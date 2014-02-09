@@ -82,6 +82,9 @@ public class MoveBoard extends Activity implements TextToSpeech.OnInitListener{
 		Intent checkIntent = new Intent();
 		checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
 		startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
+
+		new SendData().execute();
+
 	}
 
 	@Override

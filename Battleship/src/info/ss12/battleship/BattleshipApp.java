@@ -45,6 +45,8 @@ import com.google.gson.Gson;
 
 public class BattleshipApp extends Activity implements TextToSpeech.OnInitListener{
 
+	boolean p1;
+	boolean p1done;
 	Ship[] Ships = new Ship[5];
 	public static int counter;
 	String key;
@@ -81,12 +83,24 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 
 	public void clicked(View view) {
 		counter++;
+		p1done = false;
+		p1 = false;
 		System.out.println("Counter is now: " + counter);
 		//ttobj.speak("New Game Selected", TextToSpeech.QUEUE_FLUSH, null);
+<<<<<<< HEAD
 		Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
 		//myIntent.putExtra("cool", counter); //Optional parameters
 		//new SendData().execute(); // done
 		BattleshipApp.this.startActivity(myIntent);
+=======
+		//Intent myIntent = new Intent(BattleshipApp.this, MoveBoard.class);
+		//myIntent.putExtra("cool", counter); //Optional parameters
+		new SendData().execute(); // done
+		p1 = true;
+		new SendData().execute(); // done
+
+		//BattleshipApp.this.startActivity(myIntent);
+>>>>>>> a204462d8053fd543bc3ae362634e684b5f7f487
 	}
 
 	private class SendData extends AsyncTask<String, Integer, Void> {
@@ -109,26 +123,73 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost("http://ec2-54-213-43-47.us-west-2.compute.amazonaws.com");
 				// JSON data:
+				
 				RandomBoardGenerator((short)0);
 				String jsonstr = gson.toJson(Ships);
-				System.out.println(jsonstr);
-				int limit = 3;
+				//System.out.println(jsonstr);
+				int limit = 1;
 				int cmd = 0;
+				int team;
+				if(!p1)
+				team = 1;
+				else team = 2;
+				JSONArray nh = new JSONArray();
+				nh.put(3);//1
+				nh.put(2);//2
+				nh.put(2);//3
+				nh.put(1);//4
+				nh.put(1);//5
+				JSONArray shipID = new JSONArray();
+				shipID.put(1);
+				shipID.put(2);
+				shipID.put(3);
+				shipID.put(4);
+				shipID.put(5);
 				
-				String jcmd = gson.toJson(cmd);
-				String jlim = gson.toJson(limit);
-				jsonstr+=jlim;
-				jsonstr+=jcmd;
-				System.out.println();
-				json.put("limit",3); // best of 3
-				json.put("cmd",0); // 0 = start game
-				json.put("dataa",jsonstr);
+				JSONArray X = new JSONArray();
+				JSONArray Y = new JSONArray();
+				JSONArray hitboxSID = new JSONArray();
+				hitboxSID.put(1);
+				hitboxSID.put(1);
+				hitboxSID.put(1);
+				X.put(0);
+				Y.put(0);
+				X.put(0);
+				Y.put(1);
+				X.put(0);
+				Y.put(2);//end of 1st ship
+				hitboxSID.put(2);
+				hitboxSID.put(2);
+				X.put(3);
+				Y.put(3);
+				X.put(3);
+				Y.put(2);// end of 2nd ship
+				hitboxSID.put(3);
+				hitboxSID.put(3);
+				X.put(2);
+				Y.put(1);
+				X.put(2);
+				Y.put(2);//end of 3rd ship
+				hitboxSID.put(4);
+				X.put(5);
+				Y.put(5);//end of 4th ship
+				hitboxSID.put(5);
+				X.put(1);
+				Y.put(4);//end of 5th ship
+				
+				json.put("cmd",cmd); // 1 = sign in with user and pw
+				json.put("limit", limit);
+				json.put("num_hitbox", nh);
+				json.put("shipID", shipID);
+				json.put("team", team);
+				json.put("shipx",X);
+				json.put("shipy",Y);
+				json.put("hbsid",hitboxSID);
 				JSONArray postjson = new JSONArray();
 				postjson.put(json);
 				// Post the data:
-				httppost.setHeader("json",jsonstr);
+				httppost.setHeader("json",json.toString());
 				httppost.getParams().setParameter("jsonpost",postjson);
-				// Execute HTTP Post Request
 				HttpResponse response = null;
 				try{
 					response = httpclient.execute(httppost);
@@ -144,7 +205,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 					String line = null;
 					try {
 						while ((line = reader.readLine()) != null) {
-							sb.append(line + "\n");
+							sb.append(line + "\n ");
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -157,12 +218,15 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 					}
 					//display in log
 					Log.i("RESPONSE", sb.toString());
-					if(sb.toString().contains("yay")){
+					int gameID = Integer.parseInt(sb.toString().charAt(5)+"");
+					if(sb.toString().contains("added ships")){
 						//do something with the string
-						Intent intent = new Intent(BattleshipApp.this, ScrollPage.class);
+						Intent intent = new Intent(BattleshipApp.this, MoveBoard.class);
+						intent.putExtra("cool", counter); //Optional parameters
+						intent.putExtra("GameID", gameID);
 						startActivity(intent); //switch activities
 					}else{
-						Toast.makeText(getApplicationContext(), "The server had trouble with your request. Try again later", Toast.LENGTH_LONG).show();
+						System.out.println("Not moving forward to MoveBoard");
 					}
 
 
@@ -216,7 +280,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		int limit; // hack
 		int cmd; // hack
 		Ship(short a, int b, int c){
-			limit = 3;
+			limit = 1;
 			cmd = 0;
 			team = a;
 			num_hitbox = b;
