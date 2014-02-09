@@ -8,6 +8,8 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -33,6 +35,10 @@
         <activity
             android:name="info.ss12.battleship.ScrollPage2"
             android:label="@string/title_activity_scroll_page2" >
+        </activity>
+        <activity
+            android:name="info.ss12.battleship.Grid"
+            android:label="@string/title_activity_grid" >
         </activity>
     </application>
 

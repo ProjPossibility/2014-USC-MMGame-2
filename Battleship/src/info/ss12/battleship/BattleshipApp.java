@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 
 public class BattleshipApp extends Activity {
 
+<<<<<<< HEAD
 	Ship[] ships = new Ship[5];
 	
 	@Override
@@ -167,4 +168,24 @@ public class BattleshipApp extends Activity {
 			ShipID = d;
 		}
 	}
+=======
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    public void clicked(View view) {
+    	Intent myIntent = new Intent(BattleshipApp.this, Grid.class);
+    	//myIntent.putExtra("key", value); //Optional parameters 
+    	BattleshipApp.this.startActivity(myIntent);
+    }
+>>>>>>> 1c20b27dd69b8095ec6183986bf59d454bae5743
 }

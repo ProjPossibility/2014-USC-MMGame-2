@@ -106,7 +106,7 @@
             android:gravity="center"
             android:text="@string/title_C"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="350sp" />
+            android:textSize="300sp" />
 
         <TextView
             android:id="@+id/textViewD"
