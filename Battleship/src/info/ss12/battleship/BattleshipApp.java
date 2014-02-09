@@ -209,7 +209,7 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		int limit; // hack
 		int cmd; // hack
 		Ship(short a, int b, int c){
-			limit = 3;
+			limit = 1;
 			cmd = 0;
 			team = a;
 			num_hitbox = b;
