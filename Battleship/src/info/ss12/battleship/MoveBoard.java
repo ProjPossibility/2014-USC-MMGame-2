@@ -51,6 +51,7 @@ public class MoveBoard extends Activity {
 		initAnimations();
 		counter++;
 		System.out.println("Counter:" + counter);
+		new SendData().execute();
 	}
 
 	@Override
