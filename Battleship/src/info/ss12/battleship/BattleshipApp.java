@@ -49,19 +49,12 @@ public class BattleshipApp extends Activity implements TextToSpeech.OnInitListen
 		}
 		else{
 			counter = getIntent().getIntExtra("cool", -1);
-			if(counter == -1){
-				System.out.println("WE HAVE A PROBLEM HERE");
-			}
 		}
 		ttobj = new TextToSpeech(this, this);
 
 		Intent checkIntent = new Intent();
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
-	}
-
-	public void saySomething(){
-		ttobj.speak("Welcome to Battleship", TextToSpeech.QUEUE_FLUSH, null);
 	}
 
 	@Override
