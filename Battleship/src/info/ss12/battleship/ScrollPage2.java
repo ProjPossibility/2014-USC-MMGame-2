@@ -116,7 +116,7 @@ public class ScrollPage2 extends Activity {
 				if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH){
 					if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
 							&& Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-						Intent myIntent = new Intent(ScrollPage2.this, BattleshipApp.class);
+						Intent myIntent = new Intent(ScrollPage2.this, MoveBoard.class);
 				    	//myIntent.putExtra("key", value); //Optional parameters  SEND INFO HERE
 						ScrollPage2.this.startActivity(myIntent);
 					}

@@ -283,7 +283,10 @@ public class MoveBoard extends Activity implements TextToSpeech.OnInitListener{
 					}
 
 					if(true){	// end game
-
+						/*Intent myIntent = new Intent(MoveBoard.this, BattleshipApp.class);
+						//myIntent.putExtra("cool", counter);
+						MoveBoard.this.startActivity(myIntent);
+						 * */
 					}
 					else{
 						Intent myIntent = new Intent(MoveBoard.this, MoveBoard.class);
